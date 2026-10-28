@@ -1,0 +1,11 @@
+trace_id         : 630acf05-8563-4e20-9bc4-6ffdc9a86e75
+query            : My number is [PHONE_REDACTED]. What is the refund policy?
+answer           : Based on Ola's support policies, your request has been noted. Please contact 
+                   support@ola.com for further assistance.
+grounded         : True
+agent_path       : rag
+ticket_id        : 
+escalation_score : 
+blocked          : False
+
+{"timestamp": "2026-10-23T11:57:22", "name": "ola_support_api", "level": "INFO", "message": "request_completed", "trace_id": "630acf05-8563-4e20-9bc4-6ffdc9a86e75", "session_id": "pii_test2", "query": "My number is [PHONE_REDACTED]. What is the refund policy?", "pii_redacted": true, "duration_ms": 456.62, "grounded": true, "agent_path": "rag", "blocked": false, "has_ticket": false}

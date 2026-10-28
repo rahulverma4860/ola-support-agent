@@ -1,0 +1,5 @@
+SLA Policy by Severity
+
+Ola's Service Level Agreements (SLAs) define the maximum acceptable time from ticket creation to final resolution for each priority level. Priority 1 tickets must be fully resolved within four hours of creation; if resolution is not possible within this window, the ticket is automatically escalated to the on-call senior support manager. Priority 2 tickets carry a resolution SLA of twenty-four hours; partial workarounds are acceptable as interim solutions as long as the root cause is addressed within the full SLA window. Priority 3 tickets have a resolution SLA of seventy-two hours (three business days), and Priority 4 tickets are resolved within seven calendar days.
+
+SLA timers pause when a ticket enters "Awaiting Customer Response" status, meaning the clock stops if support is waiting for additional information from the customer and resumes when the customer replies. SLA breaches are tracked automatically and trigger an internal alert to the team lead; three or more breaches within a week by the same agent prompt a performance review. All SLA metrics are reviewed in the weekly operations meeting.

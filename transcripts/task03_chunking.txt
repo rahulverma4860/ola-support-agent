@@ -1,0 +1,18 @@
+Loaded 12 documents from F:\python\ola-support-agent\knowledge_base
+
+Fixed-size chunks  : 65
+Sentence chunks    : 30
+
+Example fixed chunk [0]:
+  chunk_id : 01_ticket_priority_classification_fixed_0
+  doc_id   : 01_ticket_priority_classification
+  text     : Ticket Priority Classification Rules
+
+Ola classifies every incoming support ticket into one of four priority levels base...
+
+Example sentence chunk [0]:
+  chunk_id : 01_ticket_priority_classification_sent_0
+  doc_id   : 01_ticket_priority_classification
+  text     : Ticket Priority Classification Rules
+
+Ola classifies every incoming support ticket into one of four priority levels base...

@@ -1,0 +1,5 @@
+Turn 1 answer : Based on Ola's support policies, your request has been noted. Please c
+Turn 2 ticket : OLA-0006
+Client 1 disconnected mid-conversation
+Server health after disconnect: {'status': 'ok', 'service': 'Ola Support Agent API'}
+Client 2 answer: Based on Ola's support policies, your request has been noted. Please c

@@ -1,0 +1,11 @@
+GroundedRetriever ready | strategy=fixed | threshold=0.45
+
+[Governance] Least-autonomy audit
+  Ola Policy Retrieval Specialist    tools=['rag_policy_lookup']
+  Ola Ticket Status Specialist       tools=['check_support_ticket_status']
+  Ola Support Response Composer      tools=[]
+[Governance] Audit passed: restricted tools held only by permitted agents
+
+Attempt: give check_support_ticket_status to the Composer agent
+BLOCKED: Least-autonomy violation: agent 'Ola Support Response Composer' may not hold ['check_support_ticket_status']. Allowed holders: [['Ola Ticket Status Specialist']]
+Composer tools after the attempt: []

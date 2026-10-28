@@ -1,0 +1,21 @@
+=== Multi-turn session (state persists) ===
+
+After turn 1:
+Human: What is the SLA for Priority 1?
+AI   : Priority 1 tickets must be resolved within 4 hours.
+
+After turn 2:
+Human: What is the SLA for Priority 1?
+AI   : Priority 1 tickets must be resolved within 4 hours.
+Human: What about Priority 2?
+AI   : Priority 2 tickets have a 24-hour resolution SLA.
+
+After turn 3 (history shows continuity):
+Human: What is the SLA for Priority 1?
+AI   : Priority 1 tickets must be resolved within 4 hours.
+Human: What about Priority 2?
+AI   : Priority 2 tickets have a 24-hour resolution SLA.
+Human: So Priority 1 is faster?
+AI   : Yes - Priority 1 (4 hours) is significantly faster than Priority 2 (24 hours).
+
+

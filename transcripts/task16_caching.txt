@@ -1,0 +1,8 @@
+GroundedRetriever ready | strategy=fixed | threshold=0.45
+1st call (cold)           :   169.18 ms | retriever calls so far: 1
+2nd call (identical)      :     0.04 ms | retriever calls so far: 1
+3rd call (messy variant)  :     0.02 ms | retriever calls so far: 1
+
+Same answer returned each time: True
+Cache stats: {'hits': 2, 'misses': 1, 'entries': 1}
+Speed-up on repeat: 4,198x

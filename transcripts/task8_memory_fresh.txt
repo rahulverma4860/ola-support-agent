@@ -1,0 +1,12 @@
+=== Fresh session (state correctly absent) ===
+
+  Session 'fresh_session' is NEW - no history yet.
+  History: '' (empty as expected)
+
+  After first exchange in fresh session:
+  Human: Hello, what is the refund policy?
+AI   : Refund requests must be submitted within 7 days of the ride.
+
+  Original session still intact:
+  Human: What is the SLA for Priority 1?
+AI   : Priority 1 tickets must be resolve...

@@ -1,0 +1,31 @@
+# ── RAG core ─────────────────────────────────────────────────────────
+chromadb>=0.4.22
+sentence-transformers>=2.2.2
+
+# ── CrewAI ───────────────────────────────────────────────────────────
+crewai>=0.63.0
+crewai-tools>=0.8.0
+
+# ── LangChain (memory + LCEL) ─────────────────────────────────────────
+langchain>=0.2.0
+langchain-community>=0.2.0
+
+# ── AutoGen v0.4 (agentchat) ─────────────────────────────────────────
+autogen-agentchat>=0.4.0
+autogen-core>=0.4.0
+
+# ── FastAPI + WebSocket ───────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+websockets>=12.0
+
+# ── Data / validation ────────────────────────────────────────────────
+pydantic>=2.7.0
+python-dotenv>=1.0.0
+numpy>=1.26.0
+
+# ── Structured logging ────────────────────────────────────────────────
+python-json-logger>=2.0.7
+
+# ── Utils ─────────────────────────────────────────────────────────────
+httpx>=0.27.0

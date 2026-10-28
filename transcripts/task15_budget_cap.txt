@@ -1,0 +1,17 @@
+GroundedRetriever ready | strategy=fixed | threshold=0.45
+
+[Governance] Least-autonomy audit
+  Ola Policy Retrieval Specialist    tools=['rag_policy_lookup']
+  Ola Ticket Status Specialist       tools=['check_support_ticket_status']
+  Ola Support Response Composer      tools=[]
+[Governance] Audit passed: restricted tools held only by permitted agents
+
+NORMAL request budget: {'estimated_tokens': 609, 'estimated_cost_usd': 0.001218, 'limit_tokens': 1500, 'limit_cost_usd': 0.003, 'within_budget': True}
+
+OVERSIZED request: 10434 characters
+budget: {'estimated_tokens': 3208, 'estimated_cost_usd': 0.006416, 'limit_tokens': 1500, 'limit_cost_usd': 0.003, 'within_budget': False}
+
+run_crew result:
+  blocked   : True
+  agent_path: rejected
+  answer    : Request rejected: estimated 3208 tokens ($0.006416) exceeds the per-request budget of 1500 tokens ($0.003)

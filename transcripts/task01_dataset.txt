@@ -1,0 +1,32 @@
+
+======================================================
+  DATASET VALIDATION REPORT
+======================================================
+  Total records : 50
+
+  Category distribution (required ≥3 each):
+    ✓  Billing                11
+    ✓  Technical Issue        15
+    ✓  Account Access         6
+    ✓  Product Defect         11
+    ✓  General Inquiry        7
+
+  Status distribution (required ≥1 each):
+    ✓  Open                   7
+    ✓  In Progress            15
+    ✓  Escalated              2
+    ✓  Resolved               15
+    ✓  Closed                 11
+
+  Escalated records (required 10%–30%):
+    ✓  11/50 = 22.0%
+
+  Overall : ✓ PASS
+======================================================
+
+First 5 records:
+  OLA-0001  cat=Account Access       status=Open         days= 7  esc=False  score=0.1077
+  OLA-0002  cat=Billing              status=Resolved     days=18  esc=False  score=0.2769
+  OLA-0003  cat=Billing              status=In Progress  days= 0  esc=False  score=0.0000
+  OLA-0004  cat=Product Defect       status=Resolved     days=14  esc=False  score=0.2154
+  OLA-0005  cat=Product Defect       status=Open         days=22  esc=False  score=0.3385

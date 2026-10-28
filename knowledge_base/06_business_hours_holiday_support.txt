@@ -1,0 +1,5 @@
+Business Hours and Holiday Support Policy
+
+Ola's standard support team operates Monday through Saturday from 8:00 AM to 10:00 PM in the local time zone of the customer's registered city. Outside of these hours, in-app chat is staffed by a reduced team capable of handling Priority 1 and Priority 2 issues only; Priority 3 and Priority 4 tickets submitted outside business hours are queued and addressed from the following business day. A skeleton crew is available on national public holidays for critical issues; all non-urgent tickets submitted on public holidays are carried over to the next working day without SLA penalties applied for the holiday period.
+
+During peak demand periods — such as festive seasons, major public events, or city-wide promotions — Ola may deploy temporary additional support staff to prevent SLA breaches. Customers who submit tickets outside business hours and require urgent assistance are encouraged to use the in-app emergency escalation button, which routes directly to the on-call Priority 1 team at any hour. Agents must log their shift start and end times accurately to ensure SLA calculations correctly reflect actual coverage windows.

@@ -1,0 +1,18 @@
+GroundedRetriever ready | strategy=fixed | threshold=0.45
+======================================================================
+CASE 1 - clean draft
+Query   : What is the SLA for Priority 1 tickets?
+Sources : ['02_sla_by_severity', '01_ticket_priority_classification', '02_sla_by_severity']
+Draft   : Priority 1 tickets must be fully resolved within four hours of creation.
+Verdict : approved=True
+Final   : Priority 1 tickets must be fully resolved within four hours of creation.
+Reason  : Reviewer found no unsupported claims; draft kept unchanged.
+======================================================================
+CASE 2 - draft with an injected ungrounded claim
+Query   : How do I request a refund from Ola?
+Sources : ['04_refund_compensation_policy', '04_refund_compensation_policy', '08_service_credit_policy']
+Draft   : Ola issues refunds when a service failure is verified to be the fault of the platform or a driver. Customers also receive a free airport transfer voucher for every refund.
+Verdict : approved=False
+Final   : Ola issues refunds when a service failure is verified to be the fault of the platform or a driver.
+Reason  : Removed 1 claim(s) not supported by retrieved context.
+======================================================================

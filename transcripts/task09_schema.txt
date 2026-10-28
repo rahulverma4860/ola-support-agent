@@ -1,0 +1,7 @@
+✓ Policy response valid:
+  {'query': 'What is the SLA for Priority 1?', 'answer': 'Priority 1 tickets must be resolved within 4 hours.', 'sources': ['02_sla_by_severity'], 'ticket_id': None, 'ticket_status': None, 'escalation_score': None, 'grounded': True, 'agent_path': 'rag'}
+
+✓ Ticket lookup response valid:
+  {'query': 'What is the status of OLA-0006?', 'answer': 'Ticket OLA-0006 is Resolved. Escalation score: 0.69.', 'sources': [], 'ticket_id': 'OLA-0006', 'ticket_status': 'Resolved', 'escalation_score': 0.69, 'grounded': True, 'agent_path': 'lookup'}
+
+✓ Correctly caught invalid response: ValidationError

@@ -1,0 +1,123 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 13279.64it/s]
+
+==============================================================
+  EVAL REPORT — strategy: FIXED
+==============================================================
+
+  Q : What is the SLA for Priority 1 tickets?...
+      relevant  : ['02_sla_by_severity']
+      retrieved : ['01_ticket_priority_classification', '02_sla_by_severity']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : How do I request a refund from Ola?...
+      relevant  : ['04_refund_compensation_policy']
+      retrieved : ['04_refund_compensation_policy', '08_service_credit_policy']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the escalation process for unresolved tickets?...
+      relevant  : ['03_escalation_matrix']
+      retrieved : ['03_escalation_matrix', '07_repeat_complaint_handling']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : How does Ola handle VIP customers?...
+      relevant  : ['10_vip_customer_handling']
+      retrieved : ['05_communication_channel_policy', '10_vip_customer_handling']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the data retention policy for closed tickets?...
+      relevant  : ['12_data_retention_policy']
+      retrieved : ['12_data_retention_policy']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/1 = 1.0000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the weather in Mumbai today?...
+      relevant  : []
+      retrieved : ['06_business_hours_holiday_support']
+      TP        = |retrieved AND relevant| = 0
+      Precision = TP / retrieved = 0/1 = 0.0000
+      Recall    = no relevant docs exist -> 1.0000 by convention
+
+  ─────────────────────────────────────
+  Average Precision : 0.5000
+  Average Recall    : 1.0000
+==============================================================
+
+==============================================================
+  EVAL REPORT — strategy: SENTENCE
+==============================================================
+
+  Q : What is the SLA for Priority 1 tickets?...
+      relevant  : ['02_sla_by_severity']
+      retrieved : ['01_ticket_priority_classification', '02_sla_by_severity']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : How do I request a refund from Ola?...
+      relevant  : ['04_refund_compensation_policy']
+      retrieved : ['04_refund_compensation_policy', '08_service_credit_policy']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the escalation process for unresolved tickets?...
+      relevant  : ['03_escalation_matrix']
+      retrieved : ['03_escalation_matrix', '11_outage_communication_protocol']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : How does Ola handle VIP customers?...
+      relevant  : ['10_vip_customer_handling']
+      retrieved : ['08_service_credit_policy', '10_vip_customer_handling']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the data retention policy for closed tickets?...
+      relevant  : ['12_data_retention_policy']
+      retrieved : ['11_outage_communication_protocol', '12_data_retention_policy']
+      TP        = |retrieved AND relevant| = 1
+      Precision = TP / retrieved = 1/2 = 0.5000
+      Recall    = TP / relevant  = 1/1 = 1.0000
+
+  Q : What is the weather in Mumbai today?...
+      relevant  : []
+      retrieved : ['02_sla_by_severity', '05_communication_channel_policy', '06_business_hours_holiday_support']
+      TP        = |retrieved AND relevant| = 0
+      Precision = TP / retrieved = 0/3 = 0.0000
+      Recall    = no relevant docs exist -> 1.0000 by convention
+
+  ─────────────────────────────────────
+  Average Precision : 0.4167
+  Average Recall    : 1.0000
+==============================================================
+
+==============================================================
+  RECOMMENDATION
+==============================================================
+
+  Fixed-size   → Precision=0.5000  Recall=1.0000
+  Sentence     → Precision=0.4167  Recall=1.0000
+
+        Recommendation: The fixed-size chunking strategy is recommended for deployment.
+        Fixed-size achieves higher average precision (0.5000 vs 0.4167) with identical
+        average recall (1.0000 vs 1.0000) compared to the sentence-based strategy.
+        The precision advantage means fixed-size retrieves fewer irrelevant documents
+        alongside the correct one — in a policy Q&A system, surfacing an unrelated
+        policy document as context risks confusing the LLM and degrading answer quality.
+        Equal recall confirms it never misses the relevant document, making the
+        fixed-size strategy the stronger choice on both measured dimensions.
+    
+==============================================================
+
