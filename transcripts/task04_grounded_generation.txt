@@ -1,5 +1,5 @@
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 11084.37it/s]
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12987.41it/s]
 GroundedRetriever ready | strategy=fixed | threshold=0.45
 
 ======================================================
@@ -7,15 +7,15 @@ GroundedRetriever ready | strategy=fixed | threshold=0.45
 ======================================================
 
 In-scope queries (should be HIGH similarity):
-  0.6811  What is the SLA for Priority 1 tickets?
-  0.6952  How do I request a refund from Ola?
-  0.5952  What is the escalation process for unresolved tickets?
-  0.7847  How does Ola handle VIP customers?
-  0.8274  What is the data retention policy for closed tickets?
+  0.7520  What is the SLA for Priority 1 tickets?
+  0.5433  How do I request a refund from Ola?
+  0.5713  What is the escalation process for unresolved tickets?
+  0.7780  How does Ola handle VIP customers?
+  0.8157  What is the data retention policy for closed tickets?
 
 Out-of-scope queries (should be LOW similarity):
-  0.1961  What is the weather in Mumbai today?
-  0.2710  Tell me a joke about taxi drivers.
+  0.1931  What is the weather in Mumbai today?
+  0.2214  Tell me a joke about taxi drivers.
 
   Gap is clear → threshold set to: 0.45
 ======================================================
@@ -25,27 +25,27 @@ Out-of-scope queries (should be LOW similarity):
   GROUNDED GENERATION DEMO (6 queries)
 ======================================================
 
-[✓ GROUNDED]  sim=0.6811
+[✓ GROUNDED]  sim=0.7520
   Q: What is the SLA for Priority 1 tickets?
   A: [MOCK ANSWER — grounded in retrieved context]
 
-SLA Policy by Severity
+the ticket is automatically escalated to the on-call ...
 
-Ola's Service Level Agreement...
-
-[✓ GROUNDED]  sim=0.6952
+[✓ GROUNDED]  sim=0.5433
   Q: How do I request a refund from Ola?
   A: [MOCK ANSWER — grounded in retrieved context]
 
-plied directly to the customer's Ola wallet and canno...
+Refund and Compensation Policy
 
-[✓ GROUNDED]  sim=0.5952
+Ola issues refunds or...
+
+[✓ GROUNDED]  sim=0.5713
   Q: What is the escalation process for unresolved tickets?
   A: [MOCK ANSWER — grounded in retrieved context]
 
-te in the ticket system explaining why the issue recu...
+ew the earlier tickets, confirm the root cause was ge...
 
-[✓ GROUNDED]  sim=0.7847
+[✓ GROUNDED]  sim=0.7780
   Q: How does Ola handle VIP customers?
   A: [MOCK ANSWER — grounded in retrieved context]
 
@@ -53,7 +53,7 @@ VIP Customer Handling Policy
 
 Ola's VIP tier includes...
 
-[✓ GROUNDED]  sim=0.8274
+[✓ GROUNDED]  sim=0.8157
   Q: What is the data retention policy for closed tickets?
   A: [MOCK ANSWER — grounded in retrieved context]
 
@@ -61,6 +61,6 @@ Data Retention Policy for Support Tickets
 
 Ola retain...
 
-[✗ FALLBACK]  sim=0.1961
+[✗ FALLBACK]  sim=0.1931
   Q: What is the weather in Mumbai today?
   A: I don't have enough information in my knowledge base to answer that question reliably....

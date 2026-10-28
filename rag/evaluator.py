@@ -144,24 +144,26 @@ def print_report(report: dict) -> None:
 
 # ── Recommendation ─────────────────────────────────────────────────────
 def compare_and_recommend(fixed: dict, sentence: dict) -> None:
-    print(f"\n{'='*62}")
-    print("  RECOMMENDATION")
-    print(f"{'='*62}")
-    print(f"\n  Fixed-size   → Precision={fixed['avg_precision']:.4f}  "
-          f"Recall={fixed['avg_recall']:.4f}")
-    print(f"  Sentence     → Precision={sentence['avg_precision']:.4f}  "
-          f"Recall={sentence['avg_recall']:.4f}")
-    print("""
-        Recommendation: The fixed-size chunking strategy is recommended for deployment.
-        Fixed-size achieves higher average precision (0.5000 vs 0.4167) with identical
-        average recall (1.0000 vs 1.0000) compared to the sentence-based strategy.
-        The precision advantage means fixed-size retrieves fewer irrelevant documents
-        alongside the correct one — in a policy Q&A system, surfacing an unrelated
-        policy document as context risks confusing the LLM and degrading answer quality.
-        Equal recall confirms it never misses the relevant document, making the
-        fixed-size strategy the stronger choice on both measured dimensions.
-    """)
-    print(f"{'='*62}\n")
+    f, s = fixed, sentence
+    print(f"\n{'='*62}\n  RECOMMENDATION\n{'='*62}")
+    print(f"\n  Fixed-size   -> Precision={f['avg_precision']:.4f}  Recall={f['avg_recall']:.4f}")
+    print(f"  Sentence     -> Precision={s['avg_precision']:.4f}  Recall={s['avg_recall']:.4f}\n")
+    if (f["avg_precision"], f["avg_recall"]) >= (s["avg_precision"], s["avg_recall"]):
+        win, lose, w, l = "fixed-size", "sentence-based", f, s
+    else:
+        win, lose, w, l = "sentence-based", "fixed-size", s, f
+    print(f"  Recommendation: the {win} strategy is recommended for deployment.")
+    if w["avg_precision"] != l["avg_precision"]:
+        print(f"  It has higher average precision ({w['avg_precision']:.4f} vs {l['avg_precision']:.4f}), "
+              f"so it retrieves fewer unrelated documents next to the correct one;")
+        print(f"  average recall is {w['avg_recall']:.4f} vs {l['avg_recall']:.4f} for the {lose} strategy.")
+    elif w["avg_recall"] != l["avg_recall"]:
+        print(f"  Average precision is equal ({w['avg_precision']:.4f}); it has higher average recall "
+              f"({w['avg_recall']:.4f} vs {l['avg_recall']:.4f}).")
+    else:
+        print(f"  Both strategies measured the same (precision {w['avg_precision']:.4f}, "
+              f"recall {w['avg_recall']:.4f}); fixed-size is chosen as the default.")
+    print("=" * 62)
 
 
 # ── CLI ────────────────────────────────────────────────────────────────

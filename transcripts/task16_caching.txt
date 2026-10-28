@@ -1,8 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7423.42it/s]
 GroundedRetriever ready | strategy=fixed | threshold=0.45
-1st call (cold)           :   169.18 ms | retriever calls so far: 1
+1st call (cold)           :   325.61 ms | retriever calls so far: 1
 2nd call (identical)      :     0.04 ms | retriever calls so far: 1
-3rd call (messy variant)  :     0.02 ms | retriever calls so far: 1
+3rd call (messy variant)  :     0.01 ms | retriever calls so far: 1
 
 Same answer returned each time: True
 Cache stats: {'hits': 2, 'misses': 1, 'entries': 1}
-Speed-up on repeat: 4,198x
+Speed-up on repeat: 7,236x

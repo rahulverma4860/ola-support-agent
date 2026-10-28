@@ -76,7 +76,7 @@ Note: only 2 tickets have status `Escalated`, while 11 have the boolean `escalat
 
 ## Task 2: Knowledge base
 
-12 documents in `knowledge_base/`, two paragraphs each, covering: ticket-priority classification, SLA by severity, escalation matrix, refund/compensation, communication channels, business hours/holidays, repeat complaints, service credits, feedback collection, VIP handling, outage communication, and data retention.
+12 documents in `knowledge_base/`, each exactly 5 sentences (112-164 words; per-document counts in `transcripts/task02_knowledge_base.txt`), covering: ticket-priority classification, SLA by severity, escalation matrix, refund/compensation, communication channels, business hours/holidays, repeat complaints, service credits, feedback collection, VIP handling, outage communication, and data retention. `setup_kb.py` writes them. The documents were first written at 6-7 sentences, then shortened to meet the 2-5 limit, and every measurement below was regenerated on the shortened version.
 
 ## Task 3: Chunking and indexing
 
@@ -89,30 +89,28 @@ Each strategy is embedded with `all-MiniLM-L6-v2` and indexed into its own Chrom
 
 ## Task 4: "I don't know" threshold (measured, not a preset)
 
-Top-1 cosine similarity measured against the fixed-size collection:
+Top-1 cosine similarity measured against the fixed-size collection (`transcripts/task04_grounded_generation.txt`):
 
 | Type | Query | Top-1 similarity |
 |---|---|---|
-| In-scope | What is the SLA for Priority 1 tickets? | 0.6811 |
-| In-scope | How do I request a refund from Ola? | 0.6952 |
-| In-scope | When should a ticket be escalated to Tier 2? | 0.5832 |
-| Out-of-scope | What is the weather in Mumbai today? | 0.1961 |
-| Out-of-scope | Tell me a joke about taxi drivers | 0.2804 |
+| In-scope | What is the SLA for Priority 1 tickets? | 0.7520 |
+| In-scope | How do I request a refund from Ola? | 0.5433 |
+| In-scope | What is the escalation process for unresolved tickets? | 0.5713 |
+| Out-of-scope | What is the weather in Mumbai today? | 0.1931 |
+| Out-of-scope | Tell me a joke about taxi drivers. | 0.2214 |
 
-Across all 12 in-scope evaluation queries, top-1 similarity ranged from 0.5446 to 0.8296. The out-of-scope cluster tops out at 0.2804, so the gap between the clusters is 0.28 to 0.54. **Chosen threshold: 0.45**, inside that gap. The out-of-scope weather query triggers the fallback.
+Across the 12 in-scope queries of the Task 13 evaluation, top-1 similarity ranged from 0.5222 to 0.8188 (whether or not the right document won). The out-of-scope cluster tops out at 0.2214, so the gap between the clusters is 0.22 to 0.52. **Chosen threshold: 0.45**, inside that gap. The out-of-scope weather query triggers the fallback.
 
 ## Task 5: Chunking comparison (document level)
 
-Chunks are mapped back to parent documents and de-duplicated before scoring. `rag/evaluator.py` prints, per query, the relevant documents, the retrieved documents, TP, precision, and recall, for both collections.
+Chunks are mapped back to parent documents and de-duplicated before scoring. For every query, `transcripts/task05_chunking_eval.txt` prints the relevant documents, the retrieved documents, and the arithmetic for both collections: TP, precision = TP / retrieved, and recall = TP / relevant.
 
 | Strategy | Avg precision | Avg recall |
 |---|---|---|
-| Fixed-size | 0.5000 | 1.0000 |
-| Sentence | 0.4167 | 1.0000 |
+| Fixed-size (300 characters, 50 overlap) | 0.4166 | 1.0000 |
+| Sentence-based (3 sentences per chunk) | 0.3611 | 1.0000 |
 
-Example arithmetic, fixed-size, "What is the SLA for Priority 1 tickets?": retrieved {01_ticket_priority_classification, 02_sla_by_severity}, relevant {02_sla_by_severity}, TP = 1, precision = 1/2 = 0.50, recall = 1/1 = 1.00.
-
-**Recommendation: fixed-size.** It has higher average precision (0.5000 vs 0.4167) at identical recall (1.0000), so it pulls in fewer unrelated documents next to the correct one. The out-of-scope weather query is included in these averages with an empty relevant set (precision 0, recall set to 1.0 by convention).
+**Recommendation: fixed-size.** It has higher average precision (0.4166 vs 0.3611) at identical recall (1.0000), so it pulls in fewer unrelated documents next to the correct one. The out-of-scope weather query is included in these averages with an empty relevant set (precision 0, recall set to 1.0 by convention).
 
 ## Task 6: Escalation score
 
@@ -175,12 +173,18 @@ For each of 15 queries, `eval/judge.py` builds a judge prompt (query, expected a
 
 | Metric | Average over 15 queries |
 |---|---|
-| Accuracy | 0.9333 |
-| Grounding | 0.9333 |
-| Completeness | 0.9333 |
+| Accuracy | 0.8667 |
+| Grounding | 0.8667 |
+| Completeness | 0.8667 |
 | Safety | 1.0000 |
 
-**Known failure:** "How does Ola handle repeat complaints?" retrieves `11_outage_communication_protocol` (similarity 0.5446) instead of `07_repeat_complaint_handling`, scoring 0 on Accuracy, Grounding, and Completeness. A likely cause is vocabulary mismatch (the query says "complaints", the document says "complainant"), combined with 300-character chunks splitting that document's key sentences. This was not verified by experiment. The query was left unchanged instead of being tuned to pass.
+**Failures (3 of 15 queries), left unchanged:**
+
+- **Q03** "When should a ticket be escalated to Tier 2?" retrieved `02_sla_by_severity` instead of `03_escalation_matrix`. Not diagnosed by experiment.
+- **Q07** "How does Ola handle repeat complaints?" retrieved `09_feedback_collection_process` instead of `07_repeat_complaint_handling`. Not diagnosed by experiment.
+- **Q01** "What is the SLA for Priority 1 tickets?" retrieved the right document, but the top-3 chunks did not include the chunk that contains "four hours" (chunk 0 of `02_sla_by_severity`), so Completeness scored 0.
+
+The scores were 0.9333, 0.9333, 0.9333 and 1.0000 before the documents were shortened from 6-7 sentences to 5, so the change in the documents moved the retrieval results. The queries were not edited to recover the earlier scores.
 
 Because the judge is a deterministic rule set, it measures retrieval quality, not answer fluency.
 
@@ -191,10 +195,10 @@ Because the judge is a deterministic rule set, it measures retrieval quality, no
 - `review/autogen_review.py` builds a two-agent `RoundRobinGroupChat`: `Policy_Compliance_Reviewer` and `Final_Editor`, bounded with `max_turns=2` so each agent speaks once.
 - `Final_Editor` uses `output_content_type=Verdict` (fields `approved: bool`, `final_answer: str`, `reason: str`), and the team is built with `custom_message_types=[StructuredMessage[Verdict]]`, which is required for structured messages to be registered.
 - Under `MOCK_LLM` the agents use `MockChatCompletionClient` (`review/mock_model_client.py`), a rule-based implementation of AutoGen's `ChatCompletionClient`. The reviewer flags a draft sentence as unsupported when fewer than 60% of its content words appear in the retrieved context. The editor turns those flags into the verdict.
-- Demonstrated on 2 queries (`python review/demo.py`), with the context taken from the real retriever:
-  - "What is the SLA for Priority 1 tickets?": clean draft, `approved=True`, draft returned unchanged.
-  - "How do I request a refund from Ola?": a draft with an injected claim ("free airport transfer voucher"), `approved=False`, the injected sentence removed.
-- The demo drafts are hand-written test fixtures, because under `MOCK_LLM` the Composer always returns one fixed sentence with no claims to review.
+- Demonstrated on 2 queries (`python review/demo.py`), using the top-3 sentence-based chunks as the retrieved context:
+  - "What is the SLA for Priority 1 tickets?": the draft is the first sentence of the top retrieved chunk, `approved=True`, returned unchanged.
+  - "How do I request a refund from Ola?": the same kind of draft plus an injected claim ("free airport transfer voucher"), `approved=False`, the injected sentence removed.
+- The drafts are test fixtures built from the retrieved context, because under `MOCK_LLM` the Composer always returns one fixed sentence with no claims to review. The review demo uses sentence-based chunks because fixed-size chunks cut sentences mid-way, and a hand-written draft failed to match them.
 - Limits: the check is lexical word overlap, not semantic understanding, and the review stage is demonstrated on its own rather than inside the `/ask` pipeline.
 
 ### Task 15: Four-layer governance (two layers enforced and demonstrated)
@@ -209,7 +213,7 @@ Because the judge is a deterministic rule set, it measures retrieval quality, no
 
 `governance/cache.py` is an in-memory cache around the grounded-generation step, keyed by normalized query text (lowercased, whitespace collapsed, trailing punctuation removed). Because the tool only receives the PII-masked query, keys never contain a raw phone number. The cache is cleared whenever `/add-document` changes the knowledge base, so it cannot serve stale answers.
 
-Before/after evidence (`transcripts/task16_caching.txt`): three requests (cold, identical repeat, messy variant) caused **1** real retriever call. Cold call 169.18 ms; cached calls 0.04 ms and 0.02 ms. Cache stats: 2 hits, 1 miss, 1 entry.
+Before/after evidence (`transcripts/task16_caching.txt`): three requests (cold, identical repeat, messy variant) caused **1** real retriever call. Cold call 325.61 ms; cached calls 0.04 ms and 0.01 ms. Cache stats: 2 hits, 1 miss, 1 entry.
 
 ## Known limitations
 

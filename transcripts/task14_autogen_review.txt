@@ -1,18 +1,20 @@
-GroundedRetriever ready | strategy=fixed | threshold=0.45
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 11745.88it/s]
+GroundedRetriever ready | strategy=sentence | threshold=0.45
 ======================================================================
 CASE 1 - clean draft
 Query   : What is the SLA for Priority 1 tickets?
-Sources : ['02_sla_by_severity', '01_ticket_priority_classification', '02_sla_by_severity']
-Draft   : Priority 1 tickets must be fully resolved within four hours of creation.
+Sources : ['02_sla_by_severity', '02_sla_by_severity', '01_ticket_priority_classification']
+Draft   : Priority 3 tickets have a seventy-two hour (three business day) SLA, and Priority 4 tickets are resolved within seven calendar days.
 Verdict : approved=True
-Final   : Priority 1 tickets must be fully resolved within four hours of creation.
+Final   : Priority 3 tickets have a seventy-two hour (three business day) SLA, and Priority 4 tickets are resolved within seven calendar days.
 Reason  : Reviewer found no unsupported claims; draft kept unchanged.
 ======================================================================
 CASE 2 - draft with an injected ungrounded claim
 Query   : How do I request a refund from Ola?
-Sources : ['04_refund_compensation_policy', '04_refund_compensation_policy', '08_service_credit_policy']
-Draft   : Ola issues refunds when a service failure is verified to be the fault of the platform or a driver. Customers also receive a free airport transfer voucher for every refund.
+Sources : ['04_refund_compensation_policy', '08_service_credit_policy', '05_communication_channel_policy']
+Draft   : Ola issues refunds or compensation credits when a service failure is verified to be the fault of the platform or a driver. Customers also receive a free airport transfer voucher for every refund.
 Verdict : approved=False
-Final   : Ola issues refunds when a service failure is verified to be the fault of the platform or a driver.
+Final   : Ola issues refunds or compensation credits when a service failure is verified to be the fault of the platform or a driver.
 Reason  : Removed 1 claim(s) not supported by retrieved context.
 ======================================================================

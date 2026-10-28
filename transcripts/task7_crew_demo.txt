@@ -1,7 +1,5 @@
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 17766.63it/s]
-F:\python\ola-support-agent\agents\memory.py:47: LangChainDeprecationWarning: The class `InMemoryChatMessageHistory` was deprecated in LangChain 1.6.4 and will be removed in 2.0.0 See the short-term memory documentation for recommended alternatives: https://docs.langchain.com/oss/python/langchain/short-term-memory
-  _session_store[session_id] = ChatMessageHistory()
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 10720.20it/s]
 GroundedRetriever ready | strategy=fixed | threshold=0.45
 
 [Governance] Least-autonomy audit
@@ -13,9 +11,11 @@ GroundedRetriever ready | strategy=fixed | threshold=0.45
 ============================================================
 DEMO 1: Policy question (RAG tool invoked)
 ============================================================
+F:\python\ola-support-agent\agents\memory.py:47: LangChainDeprecationWarning: The class `InMemoryChatMessageHistory` was deprecated in LangChain 1.6.4 and will be removed in 2.0.0 See the short-term memory documentation for recommended alternatives: https://docs.langchain.com/oss/python/langchain/short-term-memory
+  _session_store[session_id] = ChatMessageHistory()
 
 [Tool Invocation] Calling rag_policy_lookup for: 'What is the SLA for Priority 1 tickets?...'
-[Tool Invocation] rag_policy_lookup returned 365 chars
+[Tool Invocation] rag_policy_lookup returned 366 chars
 ┌────────────────────────── ✨ Update Available ✨ ───────────────────────────┐
 │                                                                             │
 │  A new version of CrewAI is available!                                      │
@@ -31,7 +31,7 @@ DEMO 1: Policy question (RAG tool invoked)
 │                                                                             │
 │  Crew Execution Started                                                     │
 │  Name: crew                                                                 │
-│  ID: 5a0fc15a-89a8-4b2d-b544-d8acfe041e95                                   │
+│  ID: 3beda921-124e-4d2e-a7ce-f096b8011019                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -45,37 +45,35 @@ DEMO 1: Policy question (RAG tool invoked)
 │  --- RAG TOOL OUTPUT ---                                                    │
 │  [Sources: 02_sla_by_severity, 01_ticket_priority_classification]           │
 │                                                                             │
-│  SLA Policy by Severity                                                     │
-│                                                                             │
-│  Ola's Service Level Agreements (SLAs) define the maximum acceptable time   │
-│  from ticket creation to final resolution for each priority level.          │
-│  Priority 1 tickets must be fully resolved within four hours of creation;   │
-│  if resolution is not possible within this window, the ticket is            │
+│  the ticket is automatically escalated to the on-call senior support        │
+│  manager. Priority 2 tickets have a twenty-four hour resolution SLA, and    │
+│  partial workarounds are acceptable as long as the root cause is fixed      │
+│  within that window. Priority 3 tickets have a seventy-two hour (three      │
+│  business day) SLA, a                                                       │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
-│  ID: bdad2c1e-0b34-46f1-b944-907cdcd7fe89                                   │
+│  ID: 7e5a6fb0-bd0e-43c6-aa7c-97f0d1a28231                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
-│  Agent: Ola Policy Retrieval Specialist                                     │[35m[Finalize] todos_count=0, todos_with_results=0[0m
-
+│  Agent: Ola Policy Retrieval Specialist                                     │
 │                                                                             │
 │  Task: The customer has asked: 'What is the SLA for Priority 1 tickets?'    │
 │                                                                             │
 │  The RAG tool has already been invoked and returned this result:            │
 │  --- RAG TOOL OUTPUT ---                                                    │
-│  [Sources: 02_sla_by_severity, 01_ticket_priority_classification]           │
+│[35m[Finalize] todos_count=0, todos_with_results=0[0m  [Sources: 02_sla_by_severity, 01_ticket_priority_classification]
+           │
 │                                                                             │
-│  SLA Policy by Severity                                                     │
-│                                                                             │
-│  Ola's Service Level Agreements (SLAs) define the maximum acceptable time   │
-│  from ticket creation to final resolution for each priority level.          │
-│  Priority 1 tickets must be fully resolved within four hours of creation;   │
-│  if resolution is not possible within this window, the ticket is            │
+│  the ticket is automatically escalated to the on-call senior support        │
+│  manager. Priority 2 tickets have a twenty-four hour resolution SLA, and    │
+│  partial workarounds are acceptable as long as the root cause is fixed      │
+│  within that window. Priority 3 tickets have a seventy-two hour (three      │
+│  business day) SLA, a                                                       │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
@@ -104,12 +102,11 @@ DEMO 1: Policy question (RAG tool invoked)
 │  --- RAG TOOL OUTPUT ---                                                    │
 │  [Sources: 02_sla_by_severity, 01_ticket_priority_classification]           │
 │                                                                             │
-│  SLA Policy by Severity                                                     │
-│                                                                             │
-│  Ola's Service Level Agreements (SLAs) define the maximum acceptable time   │
-│  from ticket creation to final resolution for each priority level.          │
-│  Priority 1 tickets must be fully resolved within four hours of creation;   │
-│  if resolution is not possible within this window, the ticket is            │
+│  the ticket is automatically escalated to the on-call senior support        │
+│  manager. Priority 2 tickets have a twenty-four hour resolution SLA, and    │
+│  partial workarounds are acceptable as long as the root cause is fixed      │
+│  within that window. Priority 3 tickets have a seventy-two hour (three      │
+│  business day) SLA, a                                                       │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
@@ -129,7 +126,7 @@ DEMO 1: Policy question (RAG tool invoked)
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the ticket details from this result.                             │
-│  ID: 3e8ca369-05e1-4c64-9a06-b2e717a0767e                                   │
+│  ID: 8eb8602e-98f0-41b9-aa15-38433f06d7d7                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -137,8 +134,7 @@ DEMO 1: Policy question (RAG tool invoked)
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Ticket Status Specialist                                        │
-│  [35m[Finalize] todos_count=0, todos_with_results=0[0m
-                                                                           │
+│                                                                             │
 │  Task: The customer has asked: 'What is the SLA for Priority 1 tickets?'    │
 │                                                                             │
 │  The ticket lookup tool has already been invoked and returned:              │
@@ -147,7 +143,8 @@ DEMO 1: Policy question (RAG tool invoked)
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the ticket details from this result.                             │
-│                                                                             │
+│                                                                             [35m[Finalize] todos_count=0, todos_with_results=0[0m│
+
 └─────────────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────── ✅ Agent Final Answer ───────────────────────────┐
@@ -184,7 +181,7 @@ DEMO 1: Policy question (RAG tool invoked)
 │  compose a single clear, accurate, customer-facing response. Include: (1)   │
 │  direct answer to the query, (2) relevant policy details, (3) ticket        │
 │  details if a lookup was performed, (4) next steps for the customer.        │
-│  ID: 5fe92ea0-03a4-4e91-a72d-a19f1f87825a                                   │
+│  ID: e8b4c7ce-fea7-40ba-839f-080f05ee51d2                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -227,7 +224,7 @@ DEMO 1: Policy question (RAG tool invoked)
 │                                                                             │
 │  Crew Execution Completed                                                   │
 │  Name: crew                                                                 │
-│  ID: 5a0fc15a-89a8-4b2d-b544-d8acfe041e95                                   │
+│  ID: 3beda921-124e-4d2e-a7ce-f096b8011019                                   │
 │  Final Output: Based on Ola's support policies, your request has been       │
 │  noted. Please contact support@ola.com for further assistance.              │
 │                                                                             │
@@ -272,7 +269,7 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │                                                                             │
 │  Crew Execution Started                                                     │
 │  Name: crew                                                                 │
-│  ID: 8a555ad4-c37e-4320-8026-ee377d435dfc                                   │
+│  ID: 971f0d33-0e0e-43fc-8819-ea15897b9e56                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -289,23 +286,23 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │                                                                             │
 │  The RAG tool has already been invoked and returned this result:            │
 │  --- RAG TOOL OUTPUT ---                                                    │
-│  [Sources: 12_data_retention_policy, 01_ticket_priority_classification,     │
-│  11_outage_communication_protocol]                                          │
+│  [Sources: 11_outage_communication_protocol, 12_data_retention_policy,      │
+│  01_ticket_priority_classification]                                         │
 │                                                                             │
-│  Data Retention Policy for Support Tickets                                  │
-│                                                                             │
-│  Ola retains support ticket data — including the full conversation          │
-│  history, attachments, and agent notes — for a period of three years from   │
-│  the date the ticket was closed. After three years, ticket records are      │
-│  permanently deleted from primary storage systems                           │
+│  Manager must post a status update on the in-app status banner and the      │
+│  official Ola account on Twitter/X, and then update at least every thirty   │
+│  minutes until it is resolved. The final update must give the root cause    │
+│  in plain language and a prevention plan. Agents handling tickets during    │
+│  an outage mus                                                              │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
-│  ID: e4e31db9-3f14-4cb5-941b-4bdc4a2ad4ca                                   │
+│  ID: 5ff0c174-6e8e-4273-9d6a-76187c106efc                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
+[35m[Finalize] todos_count=0, todos_with_results=0[0m
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Policy Retrieval Specialist                                     │
@@ -313,28 +310,25 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │  Task: The customer has asked: 'What is the status of ticket OLA-0006?'     │
 │                                                                             │
 │  Conversation history:                                                      │
-│  Human: What is the SLA for Priority 1 tickets?                           [35m[Finalize] todos_count=0, todos_with_results=0[0m
-  │
+│  Human: What is the SLA for Priority 1 tickets?                             │
 │  AI   : Based on Ola's support policies, your request has been noted.       │
 │  Please contact support@ola.com for further assistance.                     │
 │                                                                             │
 │  The RAG tool has already been invoked and returned this result:            │
 │  --- RAG TOOL OUTPUT ---                                                    │
-│  [Sources: 12_data_retention_policy, 01_ticket_priority_classification,     │
-│  11_outage_communication_protocol]                                          │
+│  [Sources: 11_outage_communication_protocol, 12_data_retention_policy,      │
+│  01_ticket_priority_classification]                                         │
 │                                                                             │
-│  Data Retention Policy for Support Tickets                                  │
-│                                                                             │
-│  Ola retains support ticket data — including the full conversation          │
-│  history, attachments, and agent notes — for a period of three years from   │
-│  the date the ticket was closed. After three years, ticket records are      │
-│  permanently deleted from primary storage systems                           │
+│  Manager must post a status update on the in-app status banner and the      │
+│  official Ola account on Twitter/X, and then update at least every thirty   │
+│  minutes until it is resolved. The final update must give the root cause    │
+│  in plain language and a prevention plan. Agents handling tickets during    │
+│  an outage mus                                                              │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
-
 ┌─────────────────────────── ✅ Agent Final Answer ───────────────────────────┐
 │                                                                             │
 │  Agent: Ola Policy Retrieval Specialist                                     │
@@ -349,6 +343,7 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
+
 ┌──────────────────────────── 📋 Task Completion ─────────────────────────────┐
 │                                                                             │
 │  Task Completed                                                             │
@@ -361,15 +356,14 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │                                                                             │
 │  The RAG tool has already been invoked and returned this result:            │
 │  --- RAG TOOL OUTPUT ---                                                    │
-│  [Sources: 12_data_retention_policy, 01_ticket_priority_classification,     │
-│  11_outage_communication_protocol]                                          │
+│  [Sources: 11_outage_communication_protocol, 12_data_retention_policy,      │
+│  01_ticket_priority_classification]                                         │
 │                                                                             │
-│  Data Retention Policy for Support Tickets                                  │
-│                                                                             │
-│  Ola retains support ticket data — including the full conversation          │
-│  history, attachments, and agent notes — for a period of three years from   │
-│  the date the ticket was closed. After three years, ticket records are      │
-│  permanently deleted from primary storage systems                           │
+│  Manager must post a status update on the in-app status banner and the      │
+│  official Ola account on Twitter/X, and then update at least every thirty   │
+│  minutes until it is resolved. The final update must give the root cause    │
+│  in plain language and a prevention plan. Agents handling tickets during    │
+│  an outage mus                                                              │
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
@@ -392,7 +386,7 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the ticket details from this result.                             │
-│  ID: 5bb66d9c-cb7d-400f-aa6a-696dc2c8de0c                                   │
+│  ID: 6d7943f5-74a9-4a73-8863-34fcdbfb493f                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -400,9 +394,9 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Ticket Status Specialist                                        │
-│[35m[Finalize] todos_count=0, todos_with_results=0[0m
-                                                                             │
-│  Task: The customer has asked: 'What is the status of ticket OLA-0006?'     │
+│                                                                             │
+[35m[Finalize] todos_count=0, todos_with_results=0[0m│
+  Task: The customer has asked: 'What is the status of ticket OLA-0006?'     │
 │                                                                             │
 │  The ticket lookup tool has already been invoked and returned:              │
 │  --- LOOKUP TOOL OUTPUT ---                                                 │
@@ -453,7 +447,7 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │  compose a single clear, accurate, customer-facing response. Include: (1)   │
 │  direct answer to the query, (2) relevant policy details, (3) ticket        │
 │  details if a lookup was performed, (4) next steps for the customer.        │
-│  ID: 9772c13f-ea11-4ed6-a5d4-895eda58ca1c                                   │
+│  ID: 5f9f35e9-2ea2-4d52-9f43-743360cf8751                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -461,14 +455,14 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Support Response Composer                                       │
-[35m[Finalize] todos_count=0, todos_with_results=0[0m
 │                                                                             │
 │  Task: Using the outputs from the Retrieval Agent and Lookup Agent above,   │
 │  compose a single clear, accurate, customer-facing response. Include: (1)   │
 │  direct answer to the query, (2) relevant policy details, (3) ticket        │
 │  details if a lookup was performed, (4) next steps for the customer.        │
 │                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+[35m[Finalize] todos_count=0, todos_with_results=0[0m└─────────────────────────────────────────────────────────────────────────────┘
+
 
 ┌─────────────────────────── ✅ Agent Final Answer ───────────────────────────┐
 │                                                                             │
@@ -496,15 +490,15 @@ DEMO 2: Ticket lookup (lookup tool invoked)
 │                                                                             │
 │  Crew Execution Completed                                                   │
 │  Name: crew                                                                 │
-│  ID: 8a555ad4-c37e-4320-8026-ee377d435dfc                                   │
+│  ID: 971f0d33-0e0e-43fc-8819-ea15897b9e56                                   │
 │  Final Output: Based on Ola's support policies, your request has been       │
 │  noted. Please contact support@ola.com for further assistance.              │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-
 Query sent to crew: What is the status of ticket OLA-0006?
+
 Answer: Based on Ola's support policies, your request has been noted. Please contact support@ola.com for further assistance.
 Path: both | Ticket: OLA-0006 | Blocked: False
 
@@ -539,7 +533,7 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │                                                                             │
 │  Crew Execution Started                                                     │
 │  Name: crew                                                                 │
-│  ID: f95df91f-27d6-424c-a398-c3664b6f4e3a                                   │
+│  ID: 4a88a372-2edc-4f39-b0f0-b63d3c5a8327                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -565,7 +559,7 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the relevant policy information from this result.                │
-│  ID: 0ee4276b-d35b-4252-9767-60740887b185                                   │
+│  ID: 06768f68-6a78-4071-9b0d-64718c4e384a                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -573,14 +567,14 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Policy Retrieval Specialist                                     │
-│                                                                             │
+│  [35m[Finalize] todos_count=0, todos_with_results=0[0m
+                                                                           │
 │  Task: The customer has asked: 'My number is [PHONE_REDACTED]. What is the  │
 │  refund policy?'                                                            │
 │                                                                             │
 │  Conversation history:                                                      │
 │  Human: What is the SLA for Priority 1 tickets?                             │
-│  AI   : Based on Ola's support policies, your request has been noted.       │[35m[Finalize] todos_count=0, todos_with_results=0[0m
-
+│  AI   : Based on Ola's support policies, your request has been noted.       │
 │  Please contact support@ola.com for further assistance.                     │
 │  Human: What is the status of ticket OLA-0006?                              │
 │  AI   : Based on Ola's support policies, your request has been noted.       │
@@ -647,7 +641,7 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │  --- END ---                                                                │
 │                                                                             │
 │  Summarise the ticket details from this result.                             │
-│  ID: e6b79540-e1bf-4890-992f-5df735473228                                   │
+│  ID: 51118975-e591-439a-a6d3-f541fe9b6ed7                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -655,9 +649,9 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 ┌───────────────────────────── 🤖 Agent Started ──────────────────────────────┐
 │                                                                             │
 │  Agent: Ola Ticket Status Specialist                                        │
-│                                                                             │
-│[35m[Finalize] todos_count=0, todos_with_results=0[0m
-  Task: The customer has asked: 'My number is [PHONE_REDACTED]. What is the  │
+│  [35m[Finalize] todos_count=0, todos_with_results=0[0m                                                                         
+  │
+│  Task: The customer has asked: 'My number is [PHONE_REDACTED]. What is the  │
 │  refund policy?'                                                            │
 │                                                                             │
 │  The ticket lookup tool has already been invoked and returned:              │
@@ -704,7 +698,7 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │  compose a single clear, accurate, customer-facing response. Include: (1)   │
 │  direct answer to the query, (2) relevant policy details, (3) ticket        │
 │  details if a lookup was performed, (4) next steps for the customer.        │
-│  ID: 9c01ec92-054e-4f97-ac88-d7b248e724ea                                   │
+│  ID: 8b366644-f606-4291-9cee-175a48d80273                                   │
 │                                                                             │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -713,14 +707,14 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │                                                                             │
 │  Agent: Ola Support Response Composer                                       │
 │                                                                             │
-│  Task: Using the outputs from the Retrieval Agent and Lookup Agent above,   [35m[Finalize] todos_count=0, todos_with_results=0[0m
-│
+│  Task: Using the outputs from the Retrieval Agent and Lookup Agent above,   │
 │  compose a single clear, accurate, customer-facing response. Include: (1)   │
 │  direct answer to the query, (2) relevant policy details, (3) ticket        │
 │  details if a lookup was performed, (4) next steps for the customer.        │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
+[35m[Finalize] todos_count=0, todos_with_results=0[0m
 ┌─────────────────────────── ✅ Agent Final Answer ───────────────────────────┐
 │                                                                             │
 │  Agent: Ola Support Response Composer                                       │
@@ -747,7 +741,7 @@ DEMO 3: Input with PII (phone masked before reaching agents)
 │                                                                             │
 │  Crew Execution Completed                                                   │
 │  Name: crew                                                                 │
-│  ID: f95df91f-27d6-424c-a398-c3664b6f4e3a                                   │
+│  ID: 4a88a372-2edc-4f39-b0f0-b63d3c5a8327                                   │
 │  Final Output: Based on Ola's support policies, your request has been       │
 │  noted. Please contact support@ola.com for further assistance.              │
 │                                                                             │
